@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP DRIVE IN</title>
+    <style>
+        body{
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif; 
+            border: 5px solid white;
+        }
+        .heading{
+            margin: 50px;
+            padding: 15px;
+        }
+        h1{
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(204, 18, 18);
+            text-align: center;
+        }
+        .subtitle{
+            color: white;
+            text-align: right;
+        }
+        .menu{
+            background-color: rgb(204, 18, 18);
+            color: white;
+            border: 5px solid whitesmoke; 
+            padding: 50px;
+            margin: 50px;
+            text-align: center;
+        }
+        .box{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            gap: 30px; 
+            margin: 50px; 
+        }
+        .menu-btn {
+            background-color: rgb(204, 18, 18); 
+            color: white; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            text-transform: uppercase; 
+            width: 200px; 
+            height: 60px; 
+            text-align: center; 
+            border: 4px solid whitesmoke; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: transform 0.2s, background-color 0.2s; 
+        }
+        .menu-btn:hover {
+            background-color: white;
+            color: rgb(204, 18, 18);
+            border-color: rgb(204, 18, 18);
+            transform: scale(1.05); 
+        }
+
+        /* Styles for the food list area */
+        .food-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .food-item {
+            display: flex;
+            justify-content: space-between; 
+            gap: 15px;                  
+            align-items: center;
+            color: white;
+            background-color: #1a1a1a;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid rgb(204, 18, 18);
+            font-size: 1.2rem;
+        }
+
+        .dishname {
+            flex-grow: 1;
+        }
+
+        .dish-right-wrap {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .pricename {
+            color: rgb(247, 116, 45);
+            font-weight: bold;
+            width: 70px;
+            text-align: right;
+        }
+        .add-btn
+        {
+            background-color: rgb(204, 18, 18); 
+            color: white; 
+            font-size: 1rem; 
+            font-weight: bold;
+            text-transform: uppercase; 
+            width: 80px; 
+            height: 30px; 
+            text-align: center; 
+            border: 4px solid whitesmoke; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: transform 0.2s, background-color 0.2s; 
+        }
+        .add-btn:hover{
+            background-color: white;
+            color:rgb(204, 18, 18);
+            border-color: rgb(204, 18, 18);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heading">
+        <header class="name">
+            <h1>SP DRIVEIN</h1>
+            <p class="subtitle"> - Here, you can order your fav & customized food</p>
+        </header>
+    </div>
+
+    <div>
+        <h1 class="menu">MENU</h1>
+    </div>
+
+    <div class="box">
+        <button class="menu-btn" onclick="showFood('veg')">veg</button>
+        <button class="menu-btn" onclick="showFood('nonveg')">non veg</button>
+        <button class="menu-btn" onclick="showFood('starters')">starters</button>
+        <button class="menu-btn" onclick="showFood('desserts')">desserts</button>
+    </div>
+
+    <div id="foodDisplay" class="food-container"></div>
+    
+    <div id="cartdisplay" class="cart-name"></div>
+
+    <script>
+        // Expanded menuData object containing exactly 10 distinct items per category
+        const menuData = {
+            veg: [
+                { name: "Paneer Butter Masala", price: "₹200" },
+                { name: "Veg Biryani", price: "₹149" },
+                { name: "Aloo Gobi", price: "₹79" },
+                { name: "Dal Makhani", price: "₹49" },
+                { name: "Kadhai Paneer", price: "₹210" },
+                { name: "Mix Veg Curry", price: "₹130" },
+                { name: "Mushroom Masala", price: "₹180" },
+                { name: "Chana Masala", price: "₹110" },
+                { name: "Jeera Rice", price: "₹99" },
+                { name: "Butter Naan (2 pcs)", price: "₹60" }
+            ],
+            nonveg: [
+                { name: "Butter Chicken", price: "₹260" },
+                { name: "Mutton Biryani", price: "₹320" },
+                { name: "Chicken Tikka Masala", price: "₹240" },
+                { name: "Fish Fry", price: "₹220" },
+                { name: "Chicken Biryani", price: "₹210" },
+                { name: "Egg Curry", price: "₹120" },
+                { name: "Prawns Masala", price: "₹280" },
+                { name: "Mutton Rogan Josh", price: "₹340" },
+                { name: "Chicken Korma", price: "₹250" },
+                { name: "Kadai Chicken", price: "₹230" }
+            ],
+            starters: [
+                { name: "Gobi Manchurian", price: "₹120" },
+                { name: "Chicken 65", price: "₹180" },
+                { name: "Spring Rolls", price: "₹110" },
+                { name: "Paneer Tikka", price: "₹160" },
+                { name: "Chilli Chicken", price: "₹190" },
+                { name: "Veg Crispy", price: "₹130" },
+                { name: "Chicken Lollipop", price: "₹200" },
+                { name: "French Fries", price: "₹80" },
+                { name: "Hara Bhara Kabab", price: "₹140" },
+                { name: "Fish Tikka", price: "₹240" }
+            ],
+            desserts: [
+                { name: "Gulab Jamun", price: "₹60" },
+                { name: "Sizzling Brownie", price: "₹150" },
+                { name: "Ice Cream", price: "₹80" },
+                { name: "Rasmalai", price: "₹70" },
+                { name: "Gajar Ka Halwa", price: "₹90" },
+                { name: "Kulfi", price: "₹50" },
+                { name: "Chocolate Mousse", price: "₹120" },
+                { name: "Choco Lava Cake", price: "₹110" },
+                { name: "Fruit Salad", price: "₹85" },
+                { name: "Fruit Custard", price: "₹95" }
+            ]
+        };
+
+        function showFood(category)
+        {
+            const displayarea = document.getElementById("foodDisplay");
+            displayarea.innerHTML = "";
+            const items = menuData[category]
+            items.forEach(item => { 
+                const div = document.createElement("div");
+                div.className = "food-item";
+
+                const dishtext = document.createElement("span"); 
+                dishtext.className = "dishname";
+                dishtext.textContent = item.name;
+
+                const rightWrap = document.createElement("div");
+                rightWrap.className = "dish-right-wrap";
+
+                const price = document.createElement("span");
+                price.className = "pricename";
+                price.textContent = item.price; 
+
+                const btn = document.createElement("button");
+                btn.className = "add-btn";
+                btn.textContent = "ADD";
+
+                rightWrap.appendChild(price);
+                rightWrap.appendChild(btn);
+
+                div.appendChild(dishtext); 
+                div.appendChild(rightWrap);
+
+                displayarea.appendChild(div);
+            });
+        }
+    </script>
+
+</body>
+</html>

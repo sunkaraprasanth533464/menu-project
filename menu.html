@@ -4,72 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SP DRIVE IN</title>
+
     <style>
-        body{
-            background-color: black;
-            font-family: Arial, Helvetica, sans-serif; 
-            border: 5px solid white;
+        * {
+            box-sizing: border-box;
         }
-        .heading{
+
+        body {
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            border: 5px solid white;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .heading {
             margin: 50px;
             padding: 15px;
         }
-        h1{
+
+        h1 {
             font-style: italic;
             font-family: Arial, Helvetica, sans-serif;
             color: rgb(204, 18, 18);
             text-align: center;
         }
-        .subtitle{
+
+        .subtitle {
             color: white;
             text-align: right;
         }
-        .menu{
+
+        .menu {
             background-color: rgb(204, 18, 18);
             color: white;
-            border: 5px solid whitesmoke; 
+            border: 5px solid whitesmoke;
             padding: 50px;
             margin: 50px;
             text-align: center;
         }
-        .box{
+
+        .box {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; 
-            gap: 30px; 
-            margin: 50px; 
+            justify-content: center;
+            gap: 30px;
+            margin: 50px;
         }
+
         .menu-btn {
-            background-color: rgb(204, 18, 18); 
-            color: white; 
-            font-size: 1.5rem; 
+            background-color: rgb(204, 18, 18);
+            color: white;
+            font-size: 1.5rem;
             font-weight: bold;
-            text-transform: uppercase; 
-            width: 200px; 
-            height: 60px; 
-            text-align: center; 
-            border: 4px solid whitesmoke; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            transition: transform 0.2s, background-color 0.2s; 
+            text-transform: uppercase;
+            width: 200px;
+            height: 60px;
+            text-align: center;
+            border: 4px solid whitesmoke;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
         }
+
         .menu-btn:hover {
             background-color: white;
             color: rgb(204, 18, 18);
             border-color: rgb(204, 18, 18);
-            transform: scale(1.05); 
+            transform: scale(1.05);
         }
 
-        /* Styles for the food list area */
         .food-container {
             max-width: 600px;
             margin: 30px auto;
             padding: 20px;
         }
+
         .food-item {
             display: flex;
-            justify-content: space-between; 
-            gap: 15px;                  
+            justify-content: space-between;
+            gap: 15px;
             align-items: center;
             color: white;
             background-color: #1a1a1a;
@@ -96,35 +110,101 @@
             width: 70px;
             text-align: right;
         }
-        .add-btn
-        {
-            background-color: rgb(204, 18, 18); 
-            color: white; 
-            font-size: 1rem; 
+
+        .add-btn {
+            background-color: rgb(204, 18, 18);
+            color: white;
+            font-size: 1rem;
             font-weight: bold;
-            text-transform: uppercase; 
-            width: 80px; 
-            height: 30px; 
-            text-align: center; 
-            border: 4px solid whitesmoke; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            transition: transform 0.2s, background-color 0.2s; 
+            text-transform: uppercase;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            border: 4px solid whitesmoke;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
         }
-        .add-btn:hover{
+
+        .add-btn:hover {
             background-color: white;
-            color:rgb(204, 18, 18);
+            color: rgb(204, 18, 18);
             border-color: rgb(204, 18, 18);
             transform: scale(1.05);
         }
+
+        .cart-name {
+            background-color: rgb(204, 18, 18);
+            color: black;
+            border: 5px solid black;
+            text-align: center;
+            padding: 10px;
+            margin: 10%;
+        }
+
+        .innerdivname {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            max-width: 400px;
+            margin: 5px auto;
+            font-size: 1.1rem;
+        }
+
+        .clearbutton {
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .clearbutton:hover {
+            background-color: white;
+            color: black;
+        }
+
+        @media (max-width: 600px) {
+            .heading,
+            .menu,
+            .box {
+                margin: 20px;
+            }
+
+            .menu {
+                padding: 25px;
+            }
+
+            .food-item {
+                font-size: 1rem;
+            }
+
+            .dish-right-wrap {
+                gap: 8px;
+            }
+
+            .add-btn {
+                width: 65px;
+                font-size: 0.8rem;
+            }
+
+            .cart-name {
+                margin: 20px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="heading">
         <header class="name">
             <h1>SP DRIVEIN</h1>
-            <p class="subtitle"> - Here, you can order your fav & customized food</p>
+            <p class="subtitle">
+                - Here, you can order your fav & customized food
+            </p>
         </header>
     </div>
 
@@ -133,18 +213,21 @@
     </div>
 
     <div class="box">
-        <button class="menu-btn" onclick="showFood('veg')">veg</button>
-        <button class="menu-btn" onclick="showFood('nonveg')">non veg</button>
-        <button class="menu-btn" onclick="showFood('starters')">starters</button>
-        <button class="menu-btn" onclick="showFood('desserts')">desserts</button>
+        <button class="menu-btn" onclick="showFood('veg')">Veg</button>
+        <button class="menu-btn" onclick="showFood('nonveg')">Non Veg</button>
+        <button class="menu-btn" onclick="showFood('starters')">Starters</button>
+        <button class="menu-btn" onclick="showFood('desserts')">Desserts</button>
     </div>
 
     <div id="foodDisplay" class="food-container"></div>
-    
-    <div id="cartdisplay" class="cart-name"></div>
+
+    <div id="cartdisplay" class="cart-name">
+        <h2>CART</h2>
+        <div id="cartitems"></div>
+        <div id="cartprices"></div>
+    </div>
 
     <script>
-        // Expanded menuData object containing exactly 10 distinct items per category
         const menuData = {
             veg: [
                 { name: "Paneer Butter Masala", price: "₹200" },
@@ -158,6 +241,7 @@
                 { name: "Jeera Rice", price: "₹99" },
                 { name: "Butter Naan (2 pcs)", price: "₹60" }
             ],
+
             nonveg: [
                 { name: "Butter Chicken", price: "₹260" },
                 { name: "Mutton Biryani", price: "₹320" },
@@ -170,6 +254,7 @@
                 { name: "Chicken Korma", price: "₹250" },
                 { name: "Kadai Chicken", price: "₹230" }
             ],
+
             starters: [
                 { name: "Gobi Manchurian", price: "₹120" },
                 { name: "Chicken 65", price: "₹180" },
@@ -182,6 +267,7 @@
                 { name: "Hara Bhara Kabab", price: "₹140" },
                 { name: "Fish Tikka", price: "₹240" }
             ],
+
             desserts: [
                 { name: "Gulab Jamun", price: "₹60" },
                 { name: "Sizzling Brownie", price: "₹150" },
@@ -196,38 +282,113 @@
             ]
         };
 
-        function showFood(category)
-        {
-            const displayarea = document.getElementById("foodDisplay");
-            displayarea.innerHTML = "";
-            const items = menuData[category]
-            items.forEach(item => { 
+        let currentCategory = null;
+        let cart = [];
+
+        function showFood(category) {
+            const displayArea = document.getElementById("foodDisplay");
+
+            if (currentCategory === category) {
+                displayArea.innerHTML = "";
+                currentCategory = null;
+                return;
+            }
+
+            currentCategory = category;
+            displayArea.innerHTML = "";
+
+            const items = menuData[category];
+
+            items.forEach(item => {
                 const div = document.createElement("div");
                 div.className = "food-item";
 
-                const dishtext = document.createElement("span"); 
-                dishtext.className = "dishname";
-                dishtext.textContent = item.name;
+                const dishText = document.createElement("span");
+                dishText.className = "dishname";
+                dishText.textContent = item.name;
 
                 const rightWrap = document.createElement("div");
                 rightWrap.className = "dish-right-wrap";
 
                 const price = document.createElement("span");
                 price.className = "pricename";
-                price.textContent = item.price; 
+                price.textContent = item.price;
 
-                const btn = document.createElement("button");
-                btn.className = "add-btn";
-                btn.textContent = "ADD";
+                const button = document.createElement("button");
+                button.className = "add-btn";
+                button.textContent = "ADD";
+
+                button.addEventListener("click", function () {
+                    addCartItem(item.name, item.price);
+                });
 
                 rightWrap.appendChild(price);
-                rightWrap.appendChild(btn);
+                rightWrap.appendChild(button);
 
-                div.appendChild(dishtext); 
+                div.appendChild(dishText);
                 div.appendChild(rightWrap);
 
-                displayarea.appendChild(div);
+                displayArea.appendChild(div);
             });
+        }
+
+        function addCartItem(itemName, itemPrice) {
+            const priceNumber = parseInt(itemPrice.replace("₹", ""), 10);
+
+            cart.push({
+                name: itemName,
+                price: priceNumber
+            });
+
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemContainer = document.getElementById("cartitems");
+            const cartPriceContainer = document.getElementById("cartprices");
+
+            cartItemContainer.innerHTML = "";
+
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemDiv = document.createElement("div");
+                itemDiv.className = "innerdivname";
+
+                const itemName = document.createElement("span");
+                itemName.textContent = item.name;
+
+                const itemPrice = document.createElement("span");
+                itemPrice.textContent = `₹${item.price}`;
+
+                itemDiv.appendChild(itemName);
+                itemDiv.appendChild(itemPrice);
+
+                cartItemContainer.appendChild(itemDiv);
+
+                total += item.price;
+            });
+
+            cartPriceContainer.innerHTML = `
+                <h3 style="
+                    margin-top: 15px;
+                    border-top: 2px solid black;
+                    padding-top: 10px;
+                ">
+                    Total: ₹${total}
+                </h3>
+
+                <div class="clearbuttondiv">
+                    <button class="clearbutton" onclick="clearCart()">
+                        CLEAR CART
+                    </button>
+                </div>
+            `;
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
         }
     </script>
 
